@@ -1,0 +1,71 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": [
+      "vuetify",
+      "webpack-env"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+      
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "vueCompilerOptions": {
+    "target": 2.7,
+    /* to use v-checkox with v-model AND value props 
+    * see https://github.com/vuejs/language-tools/issues/1969 */
+    "experimentalModelPropName": {
+      "checked": {
+        "input": {
+          "type": "checkbox"
+        },
+        "v-checkbox": true
+      }
+    }
+  },
+  "ts-node": {
+    // It is faster to skip typechecking.
+    // Remove if you want ts-node to do typechecking.
+    "transpileOnly": true,
+
+    "files": true,
+
+    "compilerOptions": {
+      // compilerOptions specified here will override those declared below,
+      // but *only* in ts-node.  Useful if you want ts-node and tsc to use
+      // different options with a single tsconfig.json.
+      "module": "CommonJS",
+      "types": [
+        "node"
+      ],
+    }
+  },
+}
