@@ -4,11 +4,6 @@
  * It can be resolved with vue-i18n >= 9 (that only works with Vue 3 currently)
  */
 import VueI18n from 'vue-i18n/types'
-// import VueI18n from './vue-i18n'
-// import {
-//   Path, Values, Locale
-// } from 'vue-i18n/types'
-// declare module './vue-i18n' {
 declare module 'vue-i18n/types' {
   export default class VueI18n {
     t (key: Path, locale: Locale, values?: Values): string

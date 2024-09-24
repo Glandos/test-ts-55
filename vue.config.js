@@ -5,15 +5,6 @@ const path = require('path');
 const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  devServer: {
-    host: '127.0.0.1',
-    compress: false,
-    proxy: {
-      '^/(auth|profile|api|tasks)': {
-        target: 'http://fake.local'
-      },
-    },
-  },
   productionSourceMap: false,
 
   configureWebpack: {
@@ -24,9 +15,6 @@ module.exports = {
       type: 'filesystem',
       cacheDirectory: process.env.WEBPACK_CACHE_DIRECTORY
     },
-    // optimization: {
-    //   minimize: false
-    // },
     plugins: [
       new webpack.DefinePlugin({
         __VUE_I18N_FULL_INSTALL__: JSON.stringify(true),
@@ -50,9 +38,6 @@ module.exports = {
   },
 
   chainWebpack: config => {
-    // This is needed while waiting for vuetify 3
-    // config.plugins.delete('fork-ts-checker')
-
     if (isProduction) {
       config.plugin('html').tap(options => {
         // Redefine options from https://github.com/jantimon/html-webpack-plugin#minification
@@ -72,10 +57,6 @@ module.exports = {
       })
     }
   },
-
-  transpileDependencies: [
-    'vuetify'
-  ],
 
   pluginOptions: {
     i18n: {

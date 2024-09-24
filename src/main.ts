@@ -1,19 +1,30 @@
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+import { castToVueI18n, createI18n } from 'vue-i18n-bridge'
 
-import App from './App.vue'
-import i18n from './i18n'
+// Bridge is done in vue.config.js
+Vue.use(VueI18n)
 
-import vuetify from './plugins/vuetify'
+const i18n = createI18n({
+  legacy: false,
+  silentFallbackWarn: true,
+  warnHtmlInMessage: "warn",
+}, VueI18n)
 
-// Make sure to register before importing any components
-import './class-component-hooks'
+Vue.use(i18n)
+
+export default 
 
 Vue.config.productionTip = false
 
 const app = new Vue({
-  vuetify,
-  i18n,
-  render: h => h(App)
+  i18n: castToVueI18n(i18n),
+  computed: {
+    title() {
+      const title: string = this.$t('hello')
+      return title
+    }
+  }
 })
 
 app.$mount('#app')
